@@ -155,23 +155,24 @@ qpnp_rtc_set_time(struct device *dev, struct rtc_time *tm)
 	/* Clear WDATA[0] */
 	reg = 0x0;
 	rc = qpnp_write_wrapper(rtc_dd, &reg,
-				rtc_dd->rtc_base + REG_OFFSET_RTC_WRITE, 1);
+				rtc_dd->rtc_base + REG_OFFSET_RTC_CTRL, 1);
 	if (rc) {
 		dev_err(dev, "Write to RTC reg failed\n");
 		goto rtc_rw_fail;
 	}
 
-	/* Write to WDATA[3], WDATA[2] and WDATA[1] */
-	rc = qpnp_write_wrapper(rtc_dd, &value[1],
-			rtc_dd->rtc_base + REG_OFFSET_RTC_WRITE + 1, 3);
-	if (rc) {
-		dev_err(dev, "Write to RTC reg failed\n");
-		goto rtc_rw_fail;
-	}
-
-	/* Write to WDATA[0] */
+	/* Write to WDATA */
 	rc = qpnp_write_wrapper(rtc_dd, value,
-				rtc_dd->rtc_base + REG_OFFSET_RTC_WRITE, 1);
+			rtc_dd->rtc_base + REG_OFFSET_RTC_WRITE, 4);
+	if (rc) {
+		dev_err(dev, "Write to RTC reg failed\n");
+		goto rtc_rw_fail;
+	}
+
+	/* enable RTC_CTRL */
+	reg = BIT_RTC_ENABLE;
+	rc = qpnp_write_wrapper(rtc_dd, &reg,
+				rtc_dd->rtc_base + REG_OFFSET_RTC_CTRL, 1);
 	if (rc) {
 		dev_err(dev, "Write to RTC reg failed\n");
 		goto rtc_rw_fail;

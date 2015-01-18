@@ -22,6 +22,11 @@
 #include <linux/qpnp/pwm.h>
 #include <linux/err.h>
 
+#ifdef CONFIG_BACKLIGHT_LM3533
+#include <linux/backlight.h>
+#include <linux/mfd/lm3533.h>
+#endif
+
 #include "mdss_dsi.h"
 
 #define DT_CMD_HDR 6
@@ -358,6 +363,14 @@ static void mdss_dsi_panel_bl_ctrl(struct mdss_panel_data *pdata,
 			}
 			mdss_dsi_panel_bklt_dcs(sctrl, bl_level);
 		}
+		break;
+	case BL_SIC:
+		#ifdef CONFIG_BACKLIGHT_LM3533
+		if (lm3533_bl_bd){
+			lm3533_bl_bd->props.brightness = bl_level;
+			backlight_update_status(lm3533_bl_bd);
+		}
+		#endif
 		break;
 	default:
 		pr_err("%s: Unknown bl_ctrl configuration\n",
@@ -860,6 +873,8 @@ static int mdss_panel_parse_dt(struct device_node *np,
 			ctrl_pdata->pwm_pmic_gpio = tmp;
 		} else if (!strncmp(data, "bl_ctrl_dcs", 11)) {
 			ctrl_pdata->bklt_ctrl = BL_DCS_CMD;
+		} else if (!strncmp(data, "bl_ctrl_sic", 11)) {
+			ctrl_pdata->bklt_ctrl = BL_SIC;
 		}
 	}
 	rc = of_property_read_u32(np, "qcom,mdss-brightness-max-level", &tmp);
@@ -977,6 +992,8 @@ static int mdss_panel_parse_dt(struct device_node *np,
 	for (i = 0; i < len; i++)
 		pinfo->mipi.dsi_phy_db.timing[i] = data[i];
 
+	pinfo->mipi.force_clk_lane_hs = of_property_read_bool(np,
+					"qcom,mdss-dsi-force-clk-lane-hs");
 	pinfo->mipi.lp11_init = of_property_read_bool(np,
 					"qcom,mdss-dsi-lp11-init");
 	rc = of_property_read_u32(np, "qcom,mdss-dsi-init-delay-us", &tmp);
