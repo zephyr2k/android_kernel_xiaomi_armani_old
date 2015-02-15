@@ -923,7 +923,7 @@ static int estimate_ocv(struct qpnp_bms_chip *chip)
 	}
 
 	ocv_est_uv = vbat_uv + (ibat_ua * rbatt_mohm) / 1000;
-	pr_debug("estimated pon ocv = %d\n", ocv_est_uv);
+	pr_info("estimated pon ocv = %d\n", ocv_est_uv);
 	return ocv_est_uv;
 }
 
@@ -1089,11 +1089,23 @@ static int read_soc_params_raw(struct qpnp_bms_chip *chip,
 		warm_reset = qpnp_pon_is_warm_reset();
 		if (raw->last_good_ocv_uv < MIN_OCV_UV
 				|| warm_reset > 0) {
-			pr_debug("OCV is stale or bad, estimating new OCV.\n");
-			chip->last_ocv_uv = estimate_ocv(chip);
+			int instant_ocv_mv, estimated_mv;
+			pr_info("OCV is stale or bad, estimating new OCV.\n");
+
+			instant_ocv_mv = read_saved_instant_ocv(chip);
+			estimated_mv = estimate_ocv(chip) / 1000;
+			pr_info("instant ocv %d estimated %d\n",
+				instant_ocv_mv, estimated_mv);
+
+			if (instant_ocv_mv != INST_OCV_INVALID &&
+				abs(instant_ocv_mv - estimated_mv) < 150)
+				chip->last_ocv_uv = instant_ocv_mv * 1000;
+			else
+				chip->last_ocv_uv = estimated_mv * 1000;
+
 			raw->last_good_ocv_uv = chip->last_ocv_uv;
 			reset_cc(chip, CLEAR_CC | CLEAR_SHDW_CC);
-			pr_debug("New PON_OCV_UV = %d, cc = %llx\n",
+			pr_info("New PON_OCV_UV = %d, cc = %llx\n",
 					chip->last_ocv_uv, raw->cc);
 		}
 	} else if (chip->new_battery) {
