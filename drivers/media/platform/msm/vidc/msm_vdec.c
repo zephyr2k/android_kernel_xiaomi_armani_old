@@ -103,7 +103,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 		),
 		.qmenu = mpeg_video_stream_format,
 		.step = 0,
-		
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_OUTPUT_ORDER,
@@ -118,7 +117,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 			),
 		.qmenu = mpeg_video_output_order,
 		.step = 0,
-		
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_ENABLE_PICTURE_TYPE,
@@ -142,7 +140,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 		.step = 1,
 		.menu_skip_mask = 0,
 		.qmenu = NULL,
-		
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_POST_LOOP_DEBLOCKER_MODE,
@@ -154,7 +151,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 		.step = 1,
 		.menu_skip_mask = 0,
 		.qmenu = NULL,
-		
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_DIVX_FORMAT,
@@ -170,7 +166,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 			),
 		.qmenu = mpeg_video_vidc_divx_format,
 		.step = 0,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_MB_ERROR_MAP_REPORTING,
@@ -182,7 +177,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 		.step = 1,
 		.menu_skip_mask = 0,
 		.qmenu = NULL,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_CONTINUE_DATA_TRANSFER,
@@ -194,7 +188,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 		.step = 1,
 		.menu_skip_mask = 0,
 		.qmenu = NULL,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_SYNC_FRAME_DECODE,
@@ -214,7 +207,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 		.step = 0,
 		.menu_skip_mask = 0,
 		.qmenu = NULL,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_EXTRADATA,
@@ -275,7 +267,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 			),
 		.qmenu = mpeg_vidc_video_alloc_mode_type,
 		.step = 0,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_ALLOC_MODE_OUTPUT,
@@ -291,7 +282,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 			),
 		.qmenu = mpeg_vidc_video_alloc_mode_type,
 		.step = 0,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_FRAME_ASSEMBLY,
@@ -303,7 +293,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 		.step = 1,
 		.menu_skip_mask = 0,
 		.qmenu = NULL,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_STREAM_OUTPUT_MODE,
@@ -319,7 +308,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 		.menu_skip_mask = 0,
 		.step = 1,
 		.qmenu = NULL,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_CONCEAL_COLOR,
@@ -329,7 +317,6 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 		.maximum = 0xffffff,
 		.default_value = DEFAULT_VIDEO_CONCEAL_COLOR_BLACK,
 		.step = 1,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_BUFFER_SIZE_LIMIT,

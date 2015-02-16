@@ -201,7 +201,6 @@ static struct msm_vidc_ctrl msm_venc_ctrls[] = {
 		.step = 0,
 		.menu_skip_mask = 0,
 		.qmenu = NULL,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_RATE_CONTROL,
@@ -614,7 +613,6 @@ static struct msm_vidc_ctrl msm_venc_ctrls[] = {
 		.step = 1,
 		.menu_skip_mask = 0,
 		.qmenu = NULL,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDEO_H264_LOOP_FILTER_BETA,
@@ -626,7 +624,6 @@ static struct msm_vidc_ctrl msm_venc_ctrls[] = {
 		.step = 1,
 		.menu_skip_mask = 0,
 		.qmenu = NULL,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDEO_H264_LOOP_FILTER_MODE,
@@ -641,7 +638,6 @@ static struct msm_vidc_ctrl msm_venc_ctrls[] = {
 		(1 << V4L2_MPEG_VIDEO_H264_LOOP_FILTER_MODE_DISABLED) |
 		(1 << L_MODE)
 		),
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDEO_HEADER_MODE,
@@ -656,7 +652,6 @@ static struct msm_vidc_ctrl msm_venc_ctrls[] = {
 		(1 << V4L2_MPEG_VIDEO_HEADER_MODE_SEPARATE) |
 		(1 << V4L2_MPEG_VIDEO_HEADER_MODE_JOINED_WITH_I_FRAME)
 		),
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_SECURE,
@@ -668,7 +663,6 @@ static struct msm_vidc_ctrl msm_venc_ctrls[] = {
 		.step = 0,
 		.menu_skip_mask = 0,
 		.qmenu = NULL,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_EXTRADATA,
@@ -796,7 +790,6 @@ static struct msm_vidc_ctrl msm_venc_ctrls[] = {
 		.default_value = 0,
 		.step = 1,
 		.qmenu = NULL,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_HIER_P_NUM_LAYERS,
@@ -807,7 +800,6 @@ static struct msm_vidc_ctrl msm_venc_ctrls[] = {
 		.default_value = 0,
 		.step = 1,
 		.qmenu = NULL,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_ENABLE_INITIAL_QP,
@@ -817,7 +809,6 @@ static struct msm_vidc_ctrl msm_venc_ctrls[] = {
 		.maximum = 0,
 		.default_value = 0,
 		.step = 0,
-		.cluster = 0,
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_I_FRAME_QP,
