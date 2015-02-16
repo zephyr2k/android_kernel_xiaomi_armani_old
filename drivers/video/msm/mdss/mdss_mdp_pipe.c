@@ -210,7 +210,8 @@ int mdss_mdp_smp_reserve(struct mdss_mdp_pipe *pipe)
 	struct mdss_mdp_plane_sizes ps;
 	int i;
 	int rc = 0, rot_mode = 0, wb_mixer = 0;
-	u32 nlines, format, seg_w;
+	bool force_alloc = 0;
+	u32 nlines, format;
 	u16 width;
 
 	width = pipe->src.w >> pipe->horz_deci;
@@ -296,7 +297,7 @@ int mdss_mdp_smp_reserve(struct mdss_mdp_pipe *pipe)
 	if (pipe->mixer->type == MDSS_MDP_MIXER_TYPE_WRITEBACK)
 		wb_mixer = 1;
 
-	force_alloc = pipe->flags & MDP_SMP_FORCE_ALLOC;	
+	force_alloc = pipe->flags & MDP_SMP_FORCE_ALLOC;
 
 	mutex_lock(&mdss_mdp_smp_lock);
 	for (i = (MAX_PLANES - 1); i >= ps.num_planes; i--) {
