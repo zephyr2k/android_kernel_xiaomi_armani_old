@@ -103,7 +103,7 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 		),
 		.qmenu = mpeg_video_stream_format,
 		.step = 0,
-		.cluster = 0,
+		
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_OUTPUT_ORDER,
@@ -118,7 +118,7 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 			),
 		.qmenu = mpeg_video_output_order,
 		.step = 0,
-		.cluster = 0,
+		
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_ENABLE_PICTURE_TYPE,
@@ -130,7 +130,7 @@ static struct msm_vidc_ctrl msm_vdec_ctrls[] = {
 		.step = 1,
 		.menu_skip_mask = 0,
 		.qmenu = NULL,
-		.cluster = 0,
+		
 	},
 	{
 		.id = V4L2_CID_MPEG_VIDC_VIDEO_KEEP_ASPECT_RATIO,
