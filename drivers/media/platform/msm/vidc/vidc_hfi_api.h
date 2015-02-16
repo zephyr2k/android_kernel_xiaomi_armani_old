@@ -934,6 +934,7 @@ struct hal_ltruse {
 struct hal_ltrmark {
 	u32 markframe;
 };
+
 /* HAL Response */
 
 enum command_response {
