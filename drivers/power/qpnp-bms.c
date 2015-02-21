@@ -963,8 +963,7 @@ static int read_saved_instant_ocv(struct qpnp_bms_chip *chip)
 		if (instant_ocv_mv > chip->max_voltage_uv / 1000)
 			instant_ocv_mv = chip->max_voltage_uv / 1000;
 
-		pr_info("read instant ocv %d reg %x\n", instant_ocv_mv, reg);
-
+		pr_debug("read instant ocv %d reg %x\n", instant_ocv_mv, reg);
 		return instant_ocv_mv;
 	}
 }
@@ -1109,11 +1108,11 @@ static int read_soc_params_raw(struct qpnp_bms_chip *chip,
 		warm_reset = qpnp_pon_is_warm_reset();
 		if (raw->last_good_ocv_uv < MIN_OCV_UV || warm_reset > 0) {
 			int instant_ocv_mv, estimated_mv;
-			pr_info("OCV is stale or bad, estimating new OCV.\n");
+			pr_debug("OCV is stale or bad, estimating new OCV.\n");
 
 			instant_ocv_mv = read_saved_instant_ocv(chip);
 			estimated_mv = estimate_ocv(chip, batt_temp) / 1000;
-			pr_info("instant ocv %d estimated %d\n",
+			pr_debug("instant ocv %d estimated %d\n",
 				instant_ocv_mv, estimated_mv);
 
 			if (instant_ocv_mv != INST_OCV_INVALID &&
@@ -3118,8 +3117,10 @@ static int backup_new_fcc(struct qpnp_bms_chip *chip, int fcc_mah,
 		min_cycle = chip->fcc_learning_samples[0].chargecycles;
 		for (i = 1; i < chip->min_fcc_learning_samples; i++) {
 			if (min_cycle >
-				chip->fcc_learning_samples[i].chargecycles)
+				chip->fcc_learning_samples[i].chargecycles) {
 				pos = i;
+				break;
+			}
 		}
 	} else {
 		/* find an empty location */
@@ -3680,6 +3681,7 @@ static int64_t read_battery_id(struct qpnp_bms_chip *chip)
 		return rc;
 	}
 #endif
+
 	return result.physical;
 }
 
